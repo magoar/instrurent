@@ -76,5 +76,8 @@ group :test do
   gem "webdrivers"
 end
 
+# Fake Data Creation
+gem "faker"
+
 # user authentication
 gem "devise"
