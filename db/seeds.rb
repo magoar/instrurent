@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+puts "creating 20 Fake instruments"
+list_of_instruments = %w(piano violin cello viola flute guitar clarinette oboe trombone drum organ)
+20.times do
+  Instrument.create(
+    name: list_of_instruments.sample,
+    user_id: 1,
+    price_per_day: 1200
+  )
+end
