@@ -3,15 +3,15 @@
 
 <div class="container">
   <% @instruments.first(10).each do |n| %>
-    <%= link_to "https://www.google.de/" do %>
+    <%= link_to instrument_path(n) do %>
       <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instruments.name %>.">
+        <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>.">
         <div class="card-body">
           <h5 class="card-title"><%= n.name %></h5>
           <h6 class=""><%= n.type %></h6>
           <h6 class=""><%= n.price_per_day/10 %>€</h6>
         </div>
-      </div>,
+      </div>
     <% end %>
   <% end %>
 
