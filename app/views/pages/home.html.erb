@@ -1,7 +1,6 @@
 <div class="container pt-5">
   <h1 class=" row justify-content-center">Rent an Instrument!</h1>
   <!-- We need a Search-thingy in the navbar! -->
-
   <div class="container m-5">
     <div class="cards">
       <% @instruments.first(12).each do |n| %>
@@ -11,7 +10,7 @@
               <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>." width=200px%>
               <div class="card-body">
                 <h2 class="card-title"><%= n.name.capitalize %></h2>
-                <p class="card-type"><%= n.type %></p>
+                <p class="card-type"><%= n.instrument_type %></p>
                 <h2 class="card-price "><%= n.price_per_day/10 %>€</h2>
               </div>
             </div>
