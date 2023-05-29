@@ -1,2 +1,11 @@
-<h1>Placeholder - This is your <%= @instrument.name %></h1>
+<h1>This is the <%= @instrument.name %> by <%= @user.first_name + " " + @user.last_name %> </h1>
 <p>Placeholder - Description</p>
+
+<%= link_to "Request Booking!", "https://www.google.de/", class: "btn btn-primary" %>
+
+<div class="container">
+  <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instrument.name %>.">
+  <h5 class="card-title"><%= @instrument.name %></h5>
+  <h6 class=""><%= @instrument.type %></h6>
+  <h6 class=""><%= @instrument.price_per_day/10 %>€</h6>
+</div>

@@ -5,10 +5,10 @@
   <div class="container m-5">
     <div class="cards">
       <% @instruments.first(12).each do |n| %>
-        <%= link_to "https://www.google.de/" do %>
+        <%= link_to instrument_path(n) do %>
           <div class="card card-instrument">
             <div class="container">
-              <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instruments.name %>." width=200px%>
+              <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>." width=200px%>
               <div class="card-body">
                 <h2 class="card-title"><%= n.name.capitalize %></h2>
                 <p class="card-type"><%= n.type %></p>
@@ -21,3 +21,4 @@
     </div>
   </div>
   </div>
+
