@@ -1,18 +1,23 @@
-<h1>Pages#home</h1>
-<!-- We need a Search-thingy in the navbar! -->
+<div class="container pt-5">
+  <h1 class=" row justify-content-center">Rent an Instrument!</h1>
+  <!-- We need a Search-thingy in the navbar! -->
+  <div class="container m-5">
+    <div class="cards">
+      <% @instruments.first(12).each do |n| %>
+        <%= link_to instrument_path(n) do %>
+          <div class="card card-instrument">
+            <div class="container">
+              <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>." width=200px%>
+              <div class="card-body">
+                <h2 class="card-title"><%= n.name.capitalize %></h2>
+                <p class="card-type"><%= n.instrument_type %></p>
+                <h2 class="card-price "><%= n.price_per_day/10 %>€</h2>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  </div>
 
-<div class="container">
-  <% @instruments.first(21).each do |n| %>
-    <%= link_to "https://www.google.de/" do %>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instruments.name %>.">
-        <div class="card-body">
-          <h5 class="card-title"><%= n.name %></h5>
-          <h6 class=""><%= n.instrument_type %></h6>
-          <h6 class=""><%= n.price_per_day/10 %>€</h6>
-        </div>
-      </div>,
-    <% end %>
-  <% end %>
-
-</div>
