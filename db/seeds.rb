@@ -12,10 +12,14 @@ require "open-uri"
 puts "creating Bach and Vivaldi users"
 User.create(
   email: "sebastian.bach@web.de",
+  first_name: "Sebastian",
+  last_name: "Bach",
   password: "sebastian.bach@web.de"
 )
 User.create(
   email: "antonio.vivaldi@web.de",
+  first_name: "Antonio",
+  last_name: "Vivaldi",
   password: "antonio.vivaldi@web.de"
 )
 
@@ -37,7 +41,7 @@ Instrument.create(
   description: "Perfect for playing the four seasons!"
 )
 
-puts "creating 20 Fake instruments"
+puts "creating 10 Fake instruments"
 list_of_instruments = %w(Violin Cello Trumpet Viola Oboe Drums Guitar Clarinet Flute Gibson)
 list_of_images = ["https://res.cloudinary.com/dera4cgch/image/upload/v1685459956/instruments/Violin-Giuseppe_Guarneri_Cremona1717_blzt1y.png",
                   "https://res.cloudinary.com/dera4cgch/image/upload/v1685459955/instruments/Cello-GiovanniFrancescoPressenda_Turin1835_zampuc.png",
