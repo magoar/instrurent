@@ -1,0 +1,8 @@
+<h1><%= "Request Booking of #{@instrument.name} from #{@instrument.user.first_name} #{@instrument.user.last_name}"  %></h1>
+
+<div>
+  <%= simple_form_for([@instrument, @booking]) do |f| %>
+    <%= f.input :rent_date, as: :date, html5: true %>
+    <%= f.submit %>
+  <% end %>
+</div>
