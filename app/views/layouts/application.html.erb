@@ -13,8 +13,10 @@
 
   <body>
   <%= render "shared/navbar" %>
-  <div class="container" style="min-height: calc(100vh - 80px)">
-    <%= yield %>
+  <div class="container pt-5 mt-5" style="min-height: calc(100vh - 20px)">
+    <div class="container mt-3">
+      <%= yield %>
+    </div>
   </div>
   <%= render "shared/footer" %>
   </body>
