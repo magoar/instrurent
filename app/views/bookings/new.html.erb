@@ -1,3 +1,8 @@
-<h1><%= "Request Booking of #{@instrument.name} from #{@owner.first_name} #{@owner.last_name}"  %></h1>
+<h1><%= "Request Booking of #{@instrument.name} from #{@instrument.user.first_name} #{@instrument.user.last_name}"  %></h1>
 
-<% # https://guides.rubyonrails.org/form_helpers.html -> implement form here %>
+<div>
+  <%= simple_form_for([@instrument, @booking]) do |f| %>
+    <%= f.input :rent_date, as: :date, html5: true %>
+    <%= f.submit %>
+  <% end %>
+</div>
