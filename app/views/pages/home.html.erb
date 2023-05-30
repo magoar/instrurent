@@ -11,18 +11,21 @@
   <!-- We need a Search-thingy in the navbar! -->
   <div class="container my-5">
     <div class="cards">
-      <% @instruments.first(12).each do |n| %>
+      <% @instruments.each do |n| %>
         <%= link_to instrument_path(n) do %>
           <div class="card card-instrument">
-            <div class="container">
-              <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>." width=200px%>
+
+              <% if n.photo.attached? %>
+                <%= cl_image_tag n.photo.key, crop: :fill %>
+              <% else %>
+                <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>.">
+              <% end %>
               <div class="card-body">
               <hr>
                 <h2 class="card-title"><%= n.name.capitalize %></h2>
                 <p class="card-type"><%= n.instrument_type %></p>
-                <h2 class="card-price "><%= n.price_per_day/10 %>€</h2>
+                <h2 class="card-price "><%= n.price_per_day %>€</h2>
               </div>
-            </div>
           </div>
         <% end %>
       <% end %>

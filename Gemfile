@@ -81,3 +81,8 @@ gem "faker"
 
 # user authentication
 gem "devise"
+
+# we can use the dotenv gem for security
+gem "dotenv-rails", groups: [:development, :test]
+
+gem "cloudinary"
