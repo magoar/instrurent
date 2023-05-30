@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @instruments = Instrument.all
   end
+
+  def dashboard
+  end
 end
