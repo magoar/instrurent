@@ -8,11 +8,14 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag asset_path('logo_instrurent.png') %>
   </head>
 
   <body>
   <%= render "shared/navbar" %>
-  <%= yield %>
+  <div class="container" style="min-height: calc(100vh - 80px)">
+    <%= yield %>
+  </div>
   <%= render "shared/footer" %>
   </body>
 </html>

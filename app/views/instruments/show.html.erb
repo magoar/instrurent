@@ -6,6 +6,7 @@
 <div class="container">
   <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instrument.name %>.">
   <h5 class="card-title"><%= @instrument.name %></h5>
-  <h6 class=""><%= @instrument.type %></h6>
+  <h6 class=""><%= @instrument.instrument_type %></h6>
+  <h6 class=""><%= @instrument.description %></h6>
   <h6 class=""><%= @instrument.price_per_day/10 %>€</h6>
 </div>
