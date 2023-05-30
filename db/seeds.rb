@@ -13,6 +13,6 @@ list_of_instruments = %w(piano violin cello viola flute guitar clarinette oboe t
     name: list_of_instruments.sample,
     user: User.first,
     price_per_day: 1200,
-    description: "Wahst a nice instrument!"
+    description: "What a nice instrument!"
   )
 end
