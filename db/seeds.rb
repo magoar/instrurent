@@ -12,7 +12,8 @@ list_of_instruments = %w(piano violin cello viola flute guitar clarinette oboe t
   Instrument.create(
     name: list_of_instruments.sample,
     user: User.first,
-    price_per_day: 1200,
+    instrument_type: list_of_instruments.sample,
+    price_per_day: 50,
     description: "What a nice instrument!"
   )
 end
