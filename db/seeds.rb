@@ -13,10 +13,8 @@ User.create(
 )
 User.create(
   email: "antonio.vivaldi@web.de",
-  password: "password"
+  password: "antonio.vivaldi@web.de"
 )
-
-p "created user valid? = #{User.last.valid?}"
 
 puts "creating Bach's Kirchenorgel"
 Instrument.create(
@@ -26,7 +24,6 @@ Instrument.create(
   price_per_day: 50,
   description: "Perfect for playing the Toccata and Fugue in D minor, BWV 565!"
 )
-p "created instrument valid? = #{Instrument.last.valid?}"
 
 puts "creating Vivaldi's Miglior Violino"
 Instrument.create(
@@ -36,7 +33,6 @@ Instrument.create(
   price_per_day: 50,
   description: "Perfect for playing the four seasons!"
 )
-p "created instrument valid? = #{Instrument.last.valid?}"
 
 puts "creating 20 Fake instruments"
 list_of_instruments = %w(piano violin cello viola flute guitar clarinette oboe trombone drum organ)
@@ -49,8 +45,6 @@ list_of_instruments = %w(piano violin cello viola flute guitar clarinette oboe t
     description: "What a nice instrument!"
   )
 end
-
-p "created instrument valid? = #{Instrument.last.valid?}"
 
 puts "creating a fake pending booking for Vivaldi"
 Booking.create(
