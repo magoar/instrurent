@@ -1,7 +1,15 @@
 <div class="container pt-5">
-  <h1 class=" row justify-content-center">Rent an Instrument!</h1>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(banner_photo.png);">
+  <div class="container">
+    <h1>InstruRent brings <strong>instruments</strong> to <strong>creative people</strong>!</h1>
+    <p>Rent an instrumet you would like to play.</p>
+
+  </div>
+</div>
+
   <!-- We need a Search-thingy in the navbar! -->
-  <div class="container m-5">
+  <div class="container my-5">
     <div class="cards">
       <% @instruments.first(12).each do |n| %>
         <%= link_to instrument_path(n) do %>
@@ -20,4 +28,3 @@
     </div>
   </div>
   </div>
-
