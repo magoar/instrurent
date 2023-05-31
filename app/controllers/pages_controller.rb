@@ -4,10 +4,10 @@ class PagesController < ApplicationController
   def home
     @instruments = Instrument.all
   end
-  
+
   def dashboard
   end
-  
+
   private
 
   def instrument_params
