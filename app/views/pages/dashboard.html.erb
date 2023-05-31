@@ -5,15 +5,15 @@
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active text-secondary" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
+      <button class="nav-link  text-secondary <%= 'active' unless params[:flag] %>" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
+      <button class="nav-link <%= 'active' if params[:flag] %> text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
     </li>
 
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
+    <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
       <div class="cards-dashboard">
           <% (current_user.instruments).each do |instrument|  %>
             <div class="card-dashboard my-3">
@@ -39,7 +39,7 @@
           <% end %>
       </div>
     </div>
-    <div class="tab-pane fade" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
       <div class="cards-dashboard">
         <% (current_user.bookings).each do |booking|  %>
           <%instrument = booking.instrument %>

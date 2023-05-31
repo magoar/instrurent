@@ -17,6 +17,21 @@
           <li class="nav-item">
             <%= link_to "Dashboard", "/dashboard", class: "nav-link" %>
           </li>
+           <li class="nav-item">
+           <% notifications = 0 %>
+           <% current_user.rentouts.each do |booking| %>
+              <% if booking.status == "pending" %>
+                <% notifications += 1 %>
+              <% end %>
+           <% end %>
+
+           <%= link_to dashboard_path(flag: 'dashboard'), class: "nav-link" do %>
+           <div class="btn btn-success" style="padding: 4px; border-radius: 4px">
+            <i class="fa-regular fa-bell"></i>
+            <%= notifications %>
+            </div>
+           <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to "Publish", new_instrument_path(@instrument), class: "nav-link" %>
           </li>

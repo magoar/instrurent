@@ -1,4 +1,0 @@
-  <h5 class="card-title"><%= @instrument.name %></h5>
-  <h6 class=""><%= @instrument.instrument_type %></h6>
-  <h6 class=""><%= @instrument.description %></h6>
-  <h6 class=""><%= @instrument.price_per_day/10 %>€</h6>
