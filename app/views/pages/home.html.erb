@@ -13,7 +13,6 @@
       <% @instruments.each do |n| %>
         <%= link_to instrument_path(n) do %>
           <div class="card card-instrument">
-
               <% if n.photo.attached? %>
                 <%= cl_image_tag n.photo.key, crop: :fill %>
               <% else %>
