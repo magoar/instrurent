@@ -26,7 +26,7 @@ User.create(
 puts "creating Bach's Kirchenorgel"
 Instrument.create(
   name: "Kirchenorgel",
-  user: User.find(1),
+  user: User.find_by(email: "sebastian.bach@web.de"),
   instrument_type: "organ",
   price_per_day: 50,
   description: "Perfect for playing the Toccata and Fugue in D minor, BWV 565!"
@@ -35,7 +35,7 @@ Instrument.create(
 puts "creating Vivaldi's Miglior Violino"
 Instrument.create(
   name: "Miglior Violino",
-  user: User.find(2),
+  user: User.find_by(email: "antonio.vivaldi@web.de"),
   instrument_type: "viola",
   price_per_day: 50,
   description: "Perfect for playing the four seasons!"
@@ -71,45 +71,45 @@ end
 puts "creating a fake pending booking for Vivaldi"
 Booking.create(
   rent_date: Date.today,
-  user_id: User.find(2),
-  instrument_id: Instrument.find(1)
+  user: User.find_by(email: 'antonio.vivaldi@web.de'),
+  instrument: Instrument.find_by(name: 'Kirchenorgel')
 )
 
 puts "creating a fake accepted booking for Vivaldi"
 Booking.create(
   rent_date: Date.yesterday,
-  user_id: User.find(2),
-  instrument_id: Instrument.find(1),
+  user: User.find_by(email: 'antonio.vivaldi@web.de'),
+  instrument: Instrument.find_by(name: 'Kirchenorgel'),
   status: "accepted"
 )
 
 puts "creating a fake rejected booking for Vivaldi"
 Booking.create(
   rent_date: Date.yesterday,
-  user_id: User.find(2),
-  instrument_id: Instrument.find(1),
+  user: User.find_by(email: 'antonio.vivaldi@web.de'),
+  instrument: Instrument.find_by(name: 'Kirchenorgel'),
   status: "rejected"
 )
 
 puts "creating a fake pending booking for Bach"
 Booking.create(
   rent_date: Date.today,
-  user_id: User.find(1),
-  instrument_id: Instrument.find(2)
+  user: User.find_by(email: 'sebastian.bach@web.de'),
+  instrument: Instrument.find_by(name: 'Miglior Violino')
 )
 
 puts "creating a fake accepted booking for Bach"
 Booking.create(
   rent_date: Date.yesterday,
-  user_id: User.find(1),
-  instrument_id: Instrument.find(2),
+  user: User.find_by(email: 'sebastian.bach@web.de'),
+  instrument: Instrument.find_by(name: 'Miglior Violino'),
   status: "accepted"
 )
 
 puts "creating a fake rejected booking for Bach"
 Booking.create(
   rent_date: Date.yesterday,
-  user_id: User.find(1),
-  instrument_id: Instrument.find(2),
+  user: User.find_by(email: 'sebastian.bach@web.de'),
+  instrument: Instrument.find_by(name: 'Miglior Violino'),
   status: "rejected"
 )
