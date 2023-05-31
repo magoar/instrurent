@@ -59,6 +59,16 @@
                 <br>
                 <h2><%= instrument.price_per_day %>€ per day</h2>
                 <br>
+                <p class="<%=
+                  if booking.status == "pending"
+                    'text-warning'
+                  elsif booking.status == "accepted"
+                    'text-success'
+                  elsif booking.status == "rejected"
+                    'text-danger'
+                  end %>">
+                  <%= booking.status %></p>
+
                 <br>
                 <%= link_to "Cancel Booking" %>
               </div>
