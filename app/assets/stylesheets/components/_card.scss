@@ -46,3 +46,58 @@ h2{
 a {
  text-decoration: none;
 }
+
+.cards-dashboard{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+}
+
+@media(max-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+.card-dashboard {
+  overflow: hidden;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.card-dashboard img {
+  margin: 5px;
+  height: 100%;
+  width: 25%;
+  object-fit:contain;
+}
+
+.card-dashboard h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-dashboard p {
+  font-size: 12px;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-dashboard .card-dashboard-infos {
+  padding: 16px;
+}

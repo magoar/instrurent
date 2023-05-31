@@ -3,6 +3,7 @@
   <div class= "back-button mt-3">
     <%= link_to "<< back to home", root_path%>
   </div>
+
   <div class="card-product">
     <% if @instrument.photo.attached? %>
       <%= cl_image_tag @instrument.photo.key, crop: :fill %>
@@ -25,8 +26,26 @@
       <%= simple_form_for([@instrument, @booking]) do |f| %>
         <%= f.input :rent_date, as: :date, html5: true %>
         <%= f.submit 'Request Booking', class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
 
+      <% end %>
+      <div class="card-product-infos">
+        <h1><%= @instrument.name %></h1>
+        <p>Instrument: <strong><%= @instrument.instrument_type %></strong></p>
+        <p>Owner: <%= @user.first_name + " " + @user.last_name %></p>
+        <hr>
+        <h2>Description</h2>
+        <p><%= @instrument.description %></p>
+        <br>
+        <h2><%= @instrument.price_per_day %>€ per day</h2>
+        <br>
+        <br>
+        <%= link_to "Request Booking!", "www.google.de", class: "btn btn-primary" %>
+      </div>
+      <div>
+        <%= simple_form_for([@instrument, @booking]) do |f| %>
+          <%= f.input :rent_date, as: :date, html5: true %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
 </div>

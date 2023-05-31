@@ -14,55 +14,67 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
-
-      <% (current_user.instruments).each do |instrument|  %>
-        <div class="card-product my-3">
-          <% if instrument.photo.attached? %>
-            <%= cl_image_tag instrument.photo.key, crop: :fill %>
-          <% else %>
-            <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
+      <div class="cards-dashboard">
+          <% (current_user.instruments).each do |instrument|  %>
+            <div class="card-dashboard my-3">
+              <% if instrument.photo.attached? %>
+                <%= cl_image_tag instrument.photo.key, crop: :fill %>
+              <% else %>
+                <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
+              <% end %>
+              <div class="card-dashboard-infos">
+                <h1><%= instrument.name %></h1>
+                <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
+                <p>Owner: <%= current_user.first_name + " " + current_user.last_name %></p>
+                <hr>
+                <h2>Description</h2>
+                <p><%= instrument.description %></p>
+                <br>
+                <h2><%= instrument.price_per_day %>€ per day</h2>
+                <br>
+                <br>
+                <%= link_to "Edit" %>
+              </div>
+            </div>
           <% end %>
-          <div class="card-product-infos">
-            <h1><%= instrument.name %></h1>
-            <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
-            <p>Owner: <%= current_user.first_name + " " + current_user.last_name %></p>
-            <hr>
-            <h2>Description</h2>
-            <p><%= instrument.description %></p>
-            <br>
-            <h2><%= instrument.price_per_day %>€ per day</h2>
-            <br>
-            <br>
-            <%= link_to "Edit" %>
-          </div>
-        </div>
-      <% end %>
+      </div>
     </div>
     <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
-    <% (current_user.bookings).each do |booking|  %>
-      <%instrument = booking.instrument %>
-      <div class="card-product my-3">
-          <% if instrument.photo.attached? %>
-            <%= cl_image_tag instrument.photo.key, crop: :fill %>
-          <% else %>
-            <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
-          <% end %>
-          <div class="card-product-infos">
-            <h1><%= instrument.name %></h1>
-            <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
-            <p>Owner: <%= booking.instrument.user.first_name + " " + booking.instrument.user.last_name %></p>
-            <hr>
-            <h2>Description</h2>
-            <p><%= instrument.description %></p>
-            <br>
-            <h2><%= instrument.price_per_day %>€ per day</h2>
-            <br>
-            <br>
-            <%= link_to "Cancel Booking" %>
-          </div>
-        </div>
+      <div class="cards-dashboard">
+        <% (current_user.bookings).each do |booking|  %>
+          <%instrument = booking.instrument %>
+          <div class="card-dashboard my-3">
+              <% if instrument.photo.attached? %>
+                <%= cl_image_tag instrument.photo.key, crop: :fill %>
+              <% else %>
+                <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
+              <% end %>
+              <div class="card-dashboard-infos">
+                <h1><%= instrument.name %></h1>
+                <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
+                <p>Owner: <%= booking.instrument.user.first_name + " " + booking.instrument.user.last_name %></p>
+                <hr>
+                <h2>Description</h2>
+                <p><%= instrument.description %></p>
+                <br>
+                <h2><%= instrument.price_per_day %>€ per day</h2>
+                <br>
+                <p class="<%=
+                  if booking.status == "pending"
+                    'text-warning'
+                  elsif booking.status == "accepted"
+                    'text-success'
+                  elsif booking.status == "rejected"
+                    'text-danger'
+                  end %>">
+                  <%= booking.status %></p>
 
-    <% end %>
+                <br>
+                <%= link_to "Cancel Booking" %>
+              </div>
+            </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
