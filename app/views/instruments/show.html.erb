@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class= "back-button mt-3">
     <%= link_to "<< back to home", root_path%>
@@ -19,12 +20,11 @@
       <h2><%= @instrument.price_per_day %>€ per day</h2>
       <br>
       <br>
-      <%= link_to "Request Booking!", "www.google.de", class: "btn btn-primary" %>
     </div>
     <div>
       <%= simple_form_for([@instrument, @booking]) do |f| %>
         <%= f.input :rent_date, as: :date, html5: true %>
-        <%= f.submit %>
+        <%= f.submit 'Request Booking', class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
