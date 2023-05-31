@@ -16,7 +16,7 @@
               <% if n.photo.attached? %>
                 <%= cl_image_tag n.photo.key, crop: :fill %>
               <% else %>
-                <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= n.name %>.">
+                <%= image_tag "default_photo.png", alt:"a picture of the #{n.name}" %>
               <% end %>
               <div class="card-body">
               <hr>
