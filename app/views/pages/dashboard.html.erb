@@ -1,103 +1,91 @@
-<h1 class= "row justify-content-left my-5">Dashboard</h1>
 
+<div class="page-container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link  text-secondary <%= 'active' if params[:flag] %>" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link <%= 'active' unless params[:flag] %> text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
+      </li>
 
-
-<div class="container">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link  text-secondary <%= 'active' if params[:flag] %>" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' unless params[:flag] %> text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
-    </li>
-
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
-      <div class="cards-dashboard">
-          <% current_user.instruments.each do |instrument|  %>
-            <div class="card-dashboard">
-              <% if instrument.photo.attached? %>
-                <%= cl_image_tag instrument.photo.key, crop: :fill %>
-              <% else %>
-                <%= image_tag "default_photo.png", alt:"a picture of the #{instrument.name}" %>
-              <% end %>
-              <div class="card-dashboard-infos">
-                <h1><%= instrument.name %></h1>
-                <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
-                <p>Owner: <%= current_user.first_name + " " + current_user.last_name %></p>
-                <hr>
-                <h2>Description</h2>
-                <p><%= instrument.description %></p>
-                <br>
-                <h2><%= instrument.price_per_day %>€ per day</h2>
-
-                <%# only show the notification of booking request pending when there is one on the instrument %>
-                <%= link_to instrument_path(instrument) do %>
-                <% pendings = instrument.bookings.where(status: "pending").count %>
-                  <% unless pendings.zero? %>
-                    <div class="badge rounded-pill bg-warning text-dark">
-                      <%= pendings %>
-                    </div>
-                  <% end %>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
+        <div class="cards-dashboard m-3">
+            <% current_user.instruments.each do |instrument|  %>
+              <div class="card-dashboard ">
+                <% if instrument.photo.attached? %>
+                  <%= cl_image_tag instrument.photo.key, crop: :fill %>
+                <% else %>
+                  <%= image_tag "default_photo.png", alt:"a picture of the #{instrument.name}" %>
                 <% end %>
-                <%# end of the notification in instrument %>
+                <div class="card-dashboard-infos">
+                  <h1><%= instrument.name %></h1>
+                  <p><i class="fa-solid fa-music pe-2"></i><%= instrument.instrument_type.capitalize %></p>
+                  <p> <i class="fa-regular fa-user pe-2"></i> <%= current_user.first_name + " " + current_user.last_name %></p>
+                  <hr>
+                  <p><%= instrument.description %></p>
+                  <br>
+                  <h2><%= instrument.price_per_day %>€ per day</h2>
 
-                <br>
-                <div class="icon-links">
-                  <%= link_to dashboard_path do%>
-                    <i class="fa-regular fa-pen-to-square"></i>
+                  <%# only show the notification of booking request pending when there is one on the instrument %>
+                  <%= link_to instrument_path(instrument) do %>
+                  <% pendings = instrument.bookings.where(status: "pending").count %>
+                    <% unless pendings.zero? %>
+                      <div class="badge rounded-pill bg-warning text-dark">
+                        <%= pendings %>
+                      </div>
+                    <% end %>
                   <% end %>
-                  <%= link_to instrument_path(instrument),
-                    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
-                    <i class="fa-regular fa-trash-can"></i>
-                  <% end %>
+                  <%# end of the notification in instrument %>
+
+                  <br>
+                  <div class="icon-links">
+                    <%= link_to dashboard_path do%>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                    <%= link_to instrument_path(instrument),
+                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+                      <i class="fa-regular fa-trash-can"></i>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+        </div>
       </div>
-    </div>
-    <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
-      <div class="cards-dashboard">
-        <% current_user.bookings.each do |booking|  %>
-          <%instrument = booking.instrument %>
-          <div class="card-dashboard my-3">
-              <% if instrument.photo.attached? %>
-                <%= cl_image_tag instrument.photo.key, crop: :fill %>
-              <% else %>
-                <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
-              <% end %>
-              <div class="card-dashboard-infos">
-                <h1><%= instrument.name %></h1>
-                <p>Instrument: <strong><%= instrument.instrument_type %></strong></p>
-                <p>Owner: <%= booking.instrument.user.first_name + " " + booking.instrument.user.last_name %></p>
-                <hr>
-                <h2>Description</h2>
-                <p><%= instrument.description %></p>
-                <br>
-                <h2><%= instrument.price_per_day %>€ per day</h2>
-                <br>
-                <p class="<%=
-                  if booking.status == "pending"
-                    'text-warning'
-                  elsif booking.status == "accepted"
-                    'text-success'
-                  elsif booking.status == "rejected"
-                    'text-danger'
-                  end %>">
-                  <%= booking.status %></p>
-
-                <br>
-                <% if booking.status != "accepted" %>
-                <%= link_to "Accept",  booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
+      <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+        <div class="cards-dashboard m-3">
+          <% current_user.bookings.each do |booking|  %>
+            <%instrument = booking.instrument %>
+            <div class="card-dashboard">
+                <% if instrument.photo.attached? %>
+                  <%= cl_image_tag instrument.photo.key, crop: :fill %>
+                <% else %>
+                  <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= instrument.name %>.">
                 <% end %>
-                <hr>
-                <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <div class="card-dashboard-infos card-booking">
+                  <h1><%= instrument.name %></h1>
+                  <p><i class="fa-solid fa-music pe-2"></i> <%= instrument.instrument_type.capitalize %></p>
+                  <p><i class="fa-regular fa-user pe-2"></i> <%= booking.instrument.user.first_name + " " + booking.instrument.user.last_name %></p>
+                  <hr>
+                  <p><%= instrument.description %></p>
+                  <br>
+                  <h2><%= instrument.price_per_day %>€ per day</h2>
+                  <br>
+                  <p class="booking-status <%=
+                    if booking.status == "pending"
+                      'text-warning'
+                    elsif booking.status == "accepted"
+                      'text-success'
+                    elsif booking.status == "rejected"
+                      'text-danger'
+                    end %>">
+                    <%= booking.status %></p>
+                </div>
               </div>
-            </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

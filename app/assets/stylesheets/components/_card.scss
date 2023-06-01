@@ -73,8 +73,6 @@ a {
 }
 
 
-
-
 .card-dashboard {
   overflow: hidden;
   height: 400px;
@@ -83,12 +81,13 @@ a {
   display: flex;
   align-items: center;
   border-radius: 5px;
+
 }
 
 .card-dashboard img {
   margin: 5px;
   height: 100%;
-  width: 25%;
+  width: 40%;
   object-fit:contain;
 }
 
@@ -98,11 +97,16 @@ a {
   margin: 0;
 }
 
+.card-dashboard h1 {
+  font-size: 32px;
+}
+
 .card-dashboard p {
-  font-size: 12px;
+  font-size: 16px;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
+
 }
 
 .card-dashboard .card-dashboard-infos {
@@ -143,4 +147,19 @@ a {
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+
+
+.card-booking .booking-status {
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: end;
+
+}
+
+.card-booking h2 {
+  font-size: 20px;
+  text-align: end;
 }
