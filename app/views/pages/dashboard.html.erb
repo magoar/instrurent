@@ -21,7 +21,7 @@
                 <% end %>
                 <div class="card-dashboard-infos">
                   <h1><%= instrument.name %></h1>
-                  <p><i class="fa-solid fa-music pe-2"></i><%= instrument.instrument_type.capitalize %></p>
+                  <p><i class="fa-solid fa-music pe-2 "></i><%= instrument.instrument_type.capitalize %></p>
                   <p> <i class="fa-regular fa-user pe-2"></i> <%= current_user.first_name + " " + current_user.last_name %></p>
                   <hr>
                   <p><%= instrument.description %></p>
@@ -32,8 +32,8 @@
                   <%= link_to instrument_path(instrument) do %>
                   <% pendings = instrument.bookings.where(status: "pending").count %>
                     <% unless pendings.zero? %>
-                      <div class="badge rounded-pill bg-warning text-dark">
-                        <%= pendings %>
+                      <div class="badge rounded-pill bg-warning text-light p-3">
+                        <%= "#{pendings} pending" %>
                       </div>
                     <% end %>
                   <% end %>
@@ -42,11 +42,11 @@
                   <br>
                   <div class="icon-links">
                     <%= link_to dashboard_path do%>
-                      <i class="fa-regular fa-pen-to-square"></i>
+                      <i class="fa-regular fa-pen-to-square text-secondary"></i>
                     <% end %>
                     <%= link_to instrument_path(instrument),
                       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
-                      <i class="fa-regular fa-trash-can"></i>
+                      <i class="fa-regular fa-trash-can text-secondary"></i>
                     <% end %>
                   </div>
                 </div>
