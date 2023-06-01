@@ -1,4 +1,4 @@
-<div class="container">
+
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner_photo.png" %>);">
   <div class="container ps-4 pt-5">
     <h1>InstruRent brings <strong>instruments</strong> to <strong>musical people</strong>!</h1>
@@ -19,11 +19,12 @@
                 <% else %>
                   <%= image_tag "default_photo.png", alt:"a picture of the #{n.name}" %>
                 <% end %>
-                <div class="card-body">
-                <hr>
-                  <h2 class="card-title"><%= n.name.capitalize %></h2>
-                  <p class="card-city"><%= n.user.city %></p>
-                  <h2 class="card-price "><%= n.price_per_day %>€</h2>
+                <div class="card-instrument-infos">
+                  <div>
+                    <h2 class="card-title"><%= n.name.capitalize %></h2>
+                    <p class="card-city"><%= n.user.city %></p>
+                  </div>
+                  <h2 class="card-price"><%= n.price_per_day %>€</h2>
                 </div>
             </div>
           <% end %>
@@ -32,5 +33,4 @@
     <% else %>
       <em>Sorry, no instruments found.</em>
     <% end %>
-  </div>
   </div>

@@ -9,20 +9,20 @@ h2{
 }
 
 .card-instrument > img {
-  padding: 20px 5px 5px 5px;
-  height: 200px;
+  padding: 15px;
+  height: 250px;
   width: 100%;
   object-fit: contain;
 }
 
 .card-instrument h2 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .card-instrument p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
 }
@@ -35,7 +35,8 @@ h2{
 
 
 .card-instrument .card-instrument-infos {
-  padding: 16px;
+  padding: 8px 20px 16px 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
