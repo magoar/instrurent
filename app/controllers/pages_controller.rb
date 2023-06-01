@@ -3,6 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @instruments = Instrument.all
+    if params[:query].present?
+      @instruments = @instruments.global_search(params[:query])
+    end
   end
 
   def dashboard
