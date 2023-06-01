@@ -5,17 +5,17 @@
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link  text-secondary <%= 'active' unless params[:flag] %>" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
+      <button class="nav-link  text-secondary <%= 'active' if params[:flag] %>" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments" type="button" role="tab" aria-controls="instruments" aria-selected="true">Instruments</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= 'active' if params[:flag] %> text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
+      <button class="nav-link <%= 'active' unless params[:flag] %> text-secondary" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
     </li>
 
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
       <div class="cards-dashboard">
-          <% (current_user.instruments).each do |instrument|  %>
+          <% current_user.instruments.each do |instrument|  %>
             <div class="card-dashboard">
               <% if instrument.photo.attached? %>
                 <%= cl_image_tag instrument.photo.key, crop: :fill %>
@@ -31,7 +31,18 @@
                 <p><%= instrument.description %></p>
                 <br>
                 <h2><%= instrument.price_per_day %>€ per day</h2>
-                <br>
+
+                <%# only show the notification of booking request pending when there is one on the instrument %>
+                <%= link_to instrument_path(instrument) do %>
+                <% pendings = instrument.bookings.where(status: "pending").count %>
+                  <% unless pendings.zero? %>
+                    <div class="badge rounded-pill bg-warning text-dark">
+                      <%= pendings %>
+                    </div>
+                  <% end %>
+                <% end %>
+                <%# end of the notification in instrument %>
+
                 <br>
                 <div class="icon-links">
                   <%= link_to dashboard_path do%>
@@ -47,9 +58,9 @@
           <% end %>
       </div>
     </div>
-    <div class="tab-pane fade <%= 'active show' if params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+    <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
       <div class="cards-dashboard">
-        <% (current_user.bookings).each do |booking|  %>
+        <% current_user.bookings.each do |booking|  %>
           <%instrument = booking.instrument %>
           <div class="card-dashboard my-3">
               <% if instrument.photo.attached? %>
@@ -78,7 +89,11 @@
                   <%= booking.status %></p>
 
                 <br>
-                <%= link_to "Cancel Booking" %>
+                <% if booking.status != "accepted" %>
+                <%= link_to "Accept",  booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
+                <% end %>
+                <hr>
+                <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
               </div>
             </div>
         <% end %>
