@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.update(status: "accepted")
-    redirect_to dashboard_path(flag: "dasboard")
+    redirect_to instrument_path(flag: "dasboard")
   end
 
   def destroy
