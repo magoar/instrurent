@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: rgb(128, 14, 14);
+  background: #3262a4;
 
 }
 
@@ -18,4 +18,6 @@
 
 .nav-item {
   padding-right: 5px;
+  display:flex;
+  align-items:center;
 }
