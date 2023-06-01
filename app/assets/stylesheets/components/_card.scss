@@ -9,27 +9,34 @@ h2{
 }
 
 .card-instrument > img {
-  padding: 5px;
-  height: 200px;
+  padding: 15px;
+  height: 250px;
   width: 100%;
   object-fit: contain;
 }
 
 .card-instrument h2 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .card-instrument p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
 }
 
+.card-instrument .card-body {
+  padding: 0 16px 16px 16px
+}
+
+
+
 
 .card-instrument .card-instrument-infos {
-  padding: 16px;
+  padding: 8px 20px 16px 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -101,4 +108,39 @@ a {
 .card-dashboard .card-dashboard-infos {
   padding: 16px;
   width: 100%
+}
+
+.card-product {
+  overflow: hidden;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+
+}
+
+.card-product img {
+  margin: 5px;
+  height: 100%;
+  width: 25%;
+  object-fit:contain;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
 }
