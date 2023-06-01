@@ -4,29 +4,56 @@
     <%= link_to "<< back to home", root_path%>
   </div>
 
-  <div class="card-product">
-    <% if @instrument.photo.attached? %>
-      <%= cl_image_tag @instrument.photo.key, crop: :fill %>
-    <% else %>
-      <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instrument.name %>.">
-    <% end %>
-    <div class="card-product-infos">
-      <h1><%= @instrument.name %></h1>
-      <p>Instrument: <strong><%= @instrument.instrument_type %></strong></p>
-      <p>Owner: <%= @user.first_name + " " + @user.last_name %></p>
-      <hr>
-      <h2>Description</h2>
-      <p><%= @instrument.description %></p>
-      <br>
-      <h2><%= @instrument.price_per_day %>€ per day</h2>
-      <br>
-      <br>
+  <div class="card-product row">
+    <div class="col-6 d-flex justify-content-between">
+      <% if @instrument.photo.attached? %>
+        <%= cl_image_tag @instrument.photo.key, crop: :fill %>
+      <% else %>
+        <img src="https://cdn.pixabay.com/photo/2010/12/13/10/01/guitar-2119_1280.jpg" alt="a picture of the <%= @instrument.name %>.">
+      <% end %>
+      <div class="card-product-infos col-8">
+        <h1><%= @instrument.name %></h1>
+        <p>Instrument: <strong><%= @instrument.instrument_type %></strong></p>
+        <p>Owner: <%= @user.first_name + " " + @user.last_name %></p>
+        <p><%= @instrument.description %></p>
+        <br>
+        <h2><%= @instrument.price_per_day %>€ per day</h2>
+        <br>
+        <br>
+      </div>
     </div>
-    <div>
+    <div class="col-6 d-flex">
+    <% if @instrument.user_id == current_user.id %>
+      <ul class="list-group flex-grow-1">
+        <% @instrument.bookings.reverse.each do |booking| %>
+          <% if booking.status == "pending" %>
+            <li class="list-group-item" style="background-color: rgb(236, 248, 249)">
+              <div class="row pe-2">
+                <div class="col-10">
+                  <p><%= "New Resquest from: #{booking.user.first_name.capitalize} #{booking.user.last_name.capitalize}" %> </p>
+                  <p><%= "For: #{booking.rent_date}" %></p>
+                </div>
+                <div class="col-1">
+                  <%= link_to booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Are you sure you want to accept the booking?"} do%>
+                    <button class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
+                  <% end %>
+                </div>
+                <div class="col-1">
+                  <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to reject this booking?"} do%>
+                        <button class="btn btn-danger"><i class="fa-solid fa-ban text-white"></i></button>
+                    <% end %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
       <%= simple_form_for([@instrument, @booking]) do |f| %>
         <%= f.input :rent_date, as: :date, html5: true %>
         <%= f.submit 'Request Booking', class: "btn btn-primary" %>
       <% end %>
+    <% end %>
     </div>
   </div>
 </div>
