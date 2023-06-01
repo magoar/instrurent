@@ -17,6 +17,9 @@
           <li class="nav-item">
             <%= link_to "Dashboard", "/dashboard", class: "nav-link" %>
           </li>
+          <%# Notification actions: only shows a notification when someone booked a instrument form current user.
+          When the user clicks on the notification then its redirected to the instruments tab in dashboard and ther he will see
+          a notification of pending on the instrument %>
            <li class="nav-item">
            <% notifications = 0 %>
            <% current_user.rentouts.each do |booking| %>
@@ -27,11 +30,12 @@
 
            <%= link_to dashboard_path(flag: 'dashboard'), class: "nav-link" do %>
            <div class="btn btn-success" style="padding: 4px; border-radius: 4px">
-            <i class="fa-regular fa-bell"></i>
-            <%= notifications %>
+              <i class="fa-regular fa-bell"></i>
+              <%= notifications %>
             </div>
            <% end %>
           </li>
+          <%# end of notifications %>
           <li class="nav-item">
             <%= link_to "Publish", new_instrument_path(@instrument), class: "nav-link" %>
           </li>

@@ -8,9 +8,21 @@ class BookingsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "accepted")
+    redirect_to dashboard_path(flag: "dasboard")
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path(flag: "dasboard"), status: :see_other
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:rent_date, :instrument_id)
+    params.require(:booking).permit(:rent_date)
   end
 end
