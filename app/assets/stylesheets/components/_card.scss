@@ -81,20 +81,22 @@ a {
   display: flex;
   align-items: center;
   border-radius: 5px;
+  padding: 0 10px;
 
 }
 
 .card-dashboard img {
   margin: 5px;
-  height: 100%;
+  height: 80%;
   width: 40%;
   object-fit:contain;
 }
 
 .card-dashboard h2 {
-  font-size: 16px;
   font-weight: bold;
   margin: 0;
+  font-size: 20px;
+  text-align: end;
 }
 
 .card-dashboard h1 {
@@ -111,7 +113,12 @@ a {
 
 .card-dashboard .card-dashboard-infos {
   padding: 16px;
-  width: 100%
+  width: 100%;
+}
+
+.card-dashboard-infos .badge{
+  font-size: 20px;
+  font-weight: normal;
 }
 
 .card-product {
@@ -157,9 +164,4 @@ a {
   text-transform: uppercase;
   text-align: end;
 
-}
-
-.card-booking h2 {
-  font-size: 20px;
-  text-align: end;
 }
