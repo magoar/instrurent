@@ -27,13 +27,15 @@ User.create(
   email: "sebastian.bach@web.de",
   first_name: "Sebastian",
   last_name: "Bach",
-  password: "sebastian.bach@web.de"
+  password: "sebastian.bach@web.de",
+  city: "Leipzig"
 )
 User.create(
   email: "antonio.vivaldi@web.de",
   first_name: "Antonio",
   last_name: "Vivaldi",
-  password: "antonio.vivaldi@web.de"
+  password: "antonio.vivaldi@web.de",
+  city: "Venedig"
 )
 
 puts "creating Bach's Kirchenorgel"
