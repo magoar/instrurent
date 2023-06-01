@@ -16,7 +16,7 @@
     <div class="tab-pane fade <%= 'active show' unless params[:flag] %>" id="instruments" role="tabpanel" aria-labelledby="instruments-tab">
       <div class="cards-dashboard">
           <% (current_user.instruments).each do |instrument|  %>
-            <div class="card-dashboard my-3">
+            <div class="card-dashboard">
               <% if instrument.photo.attached? %>
                 <%= cl_image_tag instrument.photo.key, crop: :fill %>
               <% else %>
@@ -33,7 +33,15 @@
                 <h2><%= instrument.price_per_day %>€ per day</h2>
                 <br>
                 <br>
-                <%= link_to "Edit" %>
+                <div class="icon-links">
+                  <%= link_to dashboard_path do%>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  <% end %>
+                  <%= link_to instrument_path(instrument),
+                    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+                    <i class="fa-regular fa-trash-can"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>

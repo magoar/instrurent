@@ -16,6 +16,12 @@ class InstrumentsController < ApplicationController
     redirect_to instrument_path(@instrument)
   end
 
+  def destroy
+    @instrument = Instrument.find(params[:id])
+    @instrument.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
   private
 
   def instrument_params
