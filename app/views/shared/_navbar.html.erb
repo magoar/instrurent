@@ -1,12 +1,14 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-  <div class="container-fluid px-3">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "logo_instrurent.png"%>
-    <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="container-fluid px-3">
+    <div class="nav-items-left d-flex">
+      <%= link_to "/", class: "navbar-brand" do %>
+        <%= image_tag "logo_instrurent.png"%>
+      <% end %>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="search">
         <%= form_with url: root_path, method: :get, class: "d-flex" do %>
@@ -18,7 +20,7 @@
           <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
         <% end %>
       </div>
-
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
