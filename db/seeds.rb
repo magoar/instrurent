@@ -62,7 +62,7 @@ puts "creating Vivaldi's Miglior Violino"
 instrument = Instrument.create(
   name: "Miglior Violino",
   user: User.find_by(email: "antonio.vivaldi@web.de"),
-  instrument_type: "viola",
+  instrument_type: "violin",
   price_per_day: 50,
   description: "Perfect for playing the four seasons!"
 )

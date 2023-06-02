@@ -20,7 +20,7 @@ class InstrumentsController < ApplicationController
   def destroy
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
-    flash[:notice] = 'You Deleted the booking.'
+    flash[:notice] = 'You Deleted the instrument.'
     redirect_to dashboard_path(flag: "dashboard"), status: :see_other
   end
 

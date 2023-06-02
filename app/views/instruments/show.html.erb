@@ -11,7 +11,7 @@
       <div class="card-dashboard-infos col-8">
         <h1><%= @instrument.name %></h1>
         <p><i class="fa-solid fa-music pe-2 "></i><%= @instrument.instrument_type.capitalize %></p>
-                  <p> <i class="fa-regular fa-user pe-2"></i> <%= current_user.first_name + " " + current_user.last_name %></p>
+                  <p> <i class="fa-regular fa-user pe-2"></i> <%= @instrument.user.first_name + " " + @instrument.user.last_name %></p>
                   <hr>
                   <p><%= @instrument.description %></p>
                   <br>
