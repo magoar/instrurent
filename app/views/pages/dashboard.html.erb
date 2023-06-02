@@ -29,11 +29,12 @@
                   <h2><%= instrument.price_per_day %>€ per day</h2>
 
                   <%# only show the notification of booking request pending when there is one on the instrument %>
+
                   <%= link_to instrument_path(instrument) do %>
                   <% pendings = instrument.bookings.where(status: "pending").count %>
                     <% unless pendings.zero? %>
                       <div class="badge rounded-pill bg-warning text-light p-3">
-                        <%= "#{pendings} pending" %>
+                         <%= pluralize pendings, "request" %>
                       </div>
                     <% end %>
                   <% end %>
