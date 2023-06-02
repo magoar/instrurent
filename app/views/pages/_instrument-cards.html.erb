@@ -1,0 +1,27 @@
+<% if instruments.any? %>
+  <div class="cards mb-3">
+    <% instruments.each do |instrument| %>
+      <%= link_to instrument_path(instrument) do %>
+        <div class="card card-instrument">
+            <% if instrument.photo.attached? %>
+              <%= cl_image_tag instrument.photo.key, crop: :fill %>
+            <% else %>
+              <%= image_tag "default_photo.png", alt:"a picture of the #{instrument.name}" %>
+            <% end %>
+            <div class="card-instrument-infos">
+              <div>
+                <h2 class="card-title"><%= instrument.name.capitalize %></h2>
+                <p class="card-city text-secondary"><i class="fa-solid fa-house pe-2"></i><%= instrument.user.city %></p>
+              </div>
+              <h2 class="card-price"><%= instrument.price_per_day %>€</h2>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <em>Sorry, no instruments found.</em>
+<% end %>
+<% if instruments.last_page? %>
+  <li data-no-more-results class="visually-hidden"></li>
+<% end %>

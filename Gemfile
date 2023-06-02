@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# this is handling the infinite scroll on the homepage
+gem 'kaminari'
+
 # "Simple" Search Gem
 gem "pg_search"
 

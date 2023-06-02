@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InfiniteScrollingController from "./infinite_scrolling_controller"
+application.register("infinite-scrolling", InfiniteScrollingController)
