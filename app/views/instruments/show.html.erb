@@ -1,9 +1,5 @@
 
 <div class="page-container">
-  <div class= "back-button mt-3">
-    <%= link_to "<< back to home", root_path%>
-  </div>
-
   <div class="card-product row">
     <div class="col-6 d-flex justify-content-between">
       <% if @instrument.photo.attached? %>
@@ -22,6 +18,7 @@
         <br>
       </div>
     </div>
+
     <div class="col-6 d-flex">
     <% if @instrument.user_id == current_user.id %>
       <ul class="list-group flex-grow-1">
@@ -56,4 +53,7 @@
     <% end %>
     </div>
   </div>
+     <%= link_to root_path do%>
+      <i class="fa-solid fa-left-long text-secondary fs-2"></i>
+    <% end %>
 </div>
