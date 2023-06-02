@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    flash[:notice] = 'You successfully deleted your instrument!'
+    flash[:notice] = 'You successfully deleted your booking!'
     redirect_to dashboard_path(flag: "dasboard"), status: :see_other
   end
 
