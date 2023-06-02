@@ -14,7 +14,7 @@ class InstrumentsController < ApplicationController
     @instrument.user = current_user
     @instrument.save
     flash[:notice] = 'You successfully created the instrument!'
-    redirect_to instrument_path(@instrument)
+    redirect_to dashboard_path(@instrument, flag: "dashboard")
   end
 
   def destroy
