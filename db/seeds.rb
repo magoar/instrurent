@@ -38,6 +38,14 @@ User.create(
   city: "Venedig"
 )
 
+User.create(
+  email: "justus.jonas@web.de",
+  first_name: "Justus",
+  last_name: "Jonas",
+  password: "justus.jonas@web.de",
+  city: "Rocky Beach"
+)
+
 puts "creating Bach's Kirchenorgel"
 instrument = Instrument.create(
   name: "Kirchenorgel",
@@ -62,12 +70,12 @@ file = URI.open(list_of_images[3])
 instrument.photo.attach(io: file, filename: "instrument.png", content_type: "image/png")
 instrument.save
 
-puts "creating 10 Fake instruments"
-10.times do
+puts "creating 20 Fake instruments"
+20.times do
   index = rand(0..9)
   instrument = Instrument.create(
     name: list_of_instruments[index],
-    user: User.first,
+    user: User.last,
     instrument_type: list_of_instruments[index],
     price_per_day: rand(10..50),
     description: "In perfect conditions, ready to use!"

@@ -1,36 +1,18 @@
-
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner_photo.png" %>);">
   <div class="container ps-4 pt-5">
     <h1>InstruRent brings <strong>instruments</strong> to <strong>musical people</strong>!</h1>
     <p>Rent an instrument you would like to play.</p>
-
   </div>
 </div>
 
-  <!-- We need a Search-thingy in the navbar! -->
-  <div class="container my-5">
-    <% if @instruments.any? %>
-      <div class="cards">
-        <% @instruments.each do |n| %>
-          <%= link_to instrument_path(n) do %>
-            <div class="card card-instrument">
-                <% if n.photo.attached? %>
-                  <%= cl_image_tag n.photo.key, crop: :fill %>
-                <% else %>
-                  <%= image_tag "default_photo.png", alt:"a picture of the #{n.name}" %>
-                <% end %>
-                <div class="card-instrument-infos">
-                  <div>
-                    <h2 class="card-title"><%= n.name.capitalize %></h2>
-                    <p class="card-city text-secondary"><i class="fa-solid fa-house pe-2"></i><%= n.user.city %></p>
-                  </div>
-                  <h2 class="card-price"><%= n.price_per_day %>€</h2>
-                </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% else %>
-      <em>Sorry, no instruments found.</em>
-    <% end %>
+  <div class="container my-5" id="instruments-list">
+    <%= render partial: "pages/instrument-cards", locals: { instruments: @instruments } %>
   </div>
+
+<%= tag.div(
+  data: {
+    controller: "infinite-scrolling",
+    infinite_scrolling_list_id_value: "instruments-list",
+    infinite_scrolling_url_value: root_path,
+  }
+) %>
