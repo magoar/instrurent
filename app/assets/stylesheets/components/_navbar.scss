@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #3262a4;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2)
 
 }
 
@@ -22,6 +23,16 @@
   align-items:center;
 }
 
-.search {
-  width: 40%
+.nav-items-left{
+  align-items: center;
+}
+
+.nav-items-left .form-control{
+  width: 200px
+
+}
+
+.btn-primary {
+  background-color: #afb2b8d6;
+  border-color: #afb2b8d6
 }
