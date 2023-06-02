@@ -8,13 +8,14 @@
         <%= image_tag "default_photo.png", alt:"a picture of the #{@instrument.name}" %>
 
       <% end %>
-      <div class="card-product-infos col-8">
+      <div class="card-dashboard-infos col-8">
         <h1><%= @instrument.name %></h1>
-        <p>Instrument: <strong><%= @instrument.instrument_type %></strong></p>
-        <p>Owner: <%= @user.first_name + " " + @user.last_name %></p>
-        <p><%= @instrument.description %></p>
-        <br>
-        <h2><%= @instrument.price_per_day %>€ per day</h2>
+        <p><i class="fa-solid fa-music pe-2 "></i><%= @instrument.instrument_type.capitalize %></p>
+                  <p> <i class="fa-regular fa-user pe-2"></i> <%= current_user.first_name + " " + current_user.last_name %></p>
+                  <hr>
+                  <p><%= @instrument.description %></p>
+                  <br>
+                  <h2><%= @instrument.price_per_day %>€ per day</h2>
         <br>
         <br>
       </div>
@@ -28,7 +29,7 @@
             <li class="list-group-item" style="background-color: rgb(236, 248, 249)">
               <div class="row pe-2">
                 <div class="col-10">
-                  <p><%= "New Resquest from: #{booking.user.first_name.capitalize} #{booking.user.last_name.capitalize}" %> </p>
+                  <p><%= "New Request from: #{booking.user.first_name.capitalize} #{booking.user.last_name.capitalize}" %> </p>
                   <p><%= "For: #{booking.rent_date}" %></p>
                 </div>
                 <div class="col-1">
@@ -55,6 +56,6 @@
     </div>
   </div>
      <%= link_to root_path do%>
-      <i class="fa-solid fa-left-long text-secondary fs-2"></i>
+      <i class="fa-solid fa-left-long text-secondary fs-2 pt-3"></i>
     <% end %>
 </div>
