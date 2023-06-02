@@ -92,18 +92,18 @@ a {
   object-fit:contain;
 }
 
-.card-dashboard h2 {
+.card-dashboard-infos h2 {
   font-weight: bold;
   margin: 0;
   font-size: 20px;
   text-align: end;
 }
 
-.card-dashboard h1 {
+.card-dashboard-infos h1 {
   font-size: 32px;
 }
 
-.card-dashboard p {
+.card-dashboard-infos p {
   font-size: 16px;
   opacity: .7;
   margin-bottom: 0;
@@ -138,18 +138,18 @@ a {
   object-fit:contain;
 }
 
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
+// .card-product h2 {
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }
 
-.card-product p {
-  font-size: 12px;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
+// .card-product p {
+//   font-size: 12px;
+//   opacity: .7;
+//   margin-bottom: 0;
+//   margin-top: 8px;
+// }
 
 .card-product .card-product-infos {
   padding: 16px;
