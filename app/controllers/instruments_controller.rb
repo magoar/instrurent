@@ -13,13 +13,15 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.new(instrument_params)
     @instrument.user = current_user
     @instrument.save
+    flash[:notice] = 'You successfully created the instrument!'
     redirect_to instrument_path(@instrument)
   end
 
   def destroy
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
-    redirect_to dashboard_path, status: :see_other
+    flash[:notice] = 'You Deleted the booking.'
+    redirect_to dashboard_path(flag: "dashboard"), status: :see_other
   end
 
   private

@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
     @booking.instrument = @instrument
     @booking.user = current_user
     @booking.save
+    flash[:notice] = 'You successfully Booked the instrument!'
     redirect_to dashboard_path
   end
 
